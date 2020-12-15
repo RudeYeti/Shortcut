@@ -1,4 +1,4 @@
-package io.github.rudeyeti.shortcut.commands;
+package io.github.rudeyeti.shortcut.commands.shortcut;
 
 import org.bukkit.command.CommandSender;
 
