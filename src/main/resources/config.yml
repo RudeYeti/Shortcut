@@ -1,0 +1,9 @@
+# Shortcut plugin created by Rude Yeti, Incorporated.
+# A simple plugin which makes building in a Terra121 world easier.
+# This depends on WorldEdit.
+
+# General Configuration
+
+# The value by default of the radius used in the clear subcommand.
+# Default value: 50
+default-radius: 50

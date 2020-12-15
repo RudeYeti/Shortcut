@@ -1,0 +1,10 @@
+name: ${project.name}
+version: ${project.version}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+author: Rude Yeti, Incorporated
+depend: [WorldEdit]
+description: ${project.description}
+commands:
+  shortcut:
+    description: shortcut
+    aliases: [sc]
