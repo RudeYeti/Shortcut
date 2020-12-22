@@ -47,7 +47,7 @@ public class ShortcutCommand implements CommandExecutor, TabExecutor {
             if (args[0].matches("c(lear)?|de(lete|stroy)|remove|fuckoff")) {
                 return StringUtil.copyPartialMatches(args[1], Arrays.asList("all", "nature", "trees", "caves", "mobs"), new ArrayList<>());
             } else if (args[0].matches("(re)?b(uilds?)?|create|improve")) {
-                return StringUtil.copyPartialMatches(args[1], Arrays.asList("roads"), new ArrayList<>());
+                return StringUtil.copyPartialMatches(args[1], Arrays.asList("roads", "shells"), new ArrayList<>());
             }
         }
         return Collections.singletonList("");

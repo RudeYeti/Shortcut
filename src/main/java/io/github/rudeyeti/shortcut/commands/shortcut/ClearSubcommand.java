@@ -10,7 +10,7 @@ public class ClearSubcommand {
 
     public static void caves(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        String radius = Radius.get(sender, args);
+        String radius = Radius.get(sender, args, 2);
 
         if (!radius.isEmpty()) {
             int x = player.getLocation().getBlockX() + Integer.parseInt(radius);
@@ -40,18 +40,29 @@ public class ClearSubcommand {
             }
 
             if (args[1].matches("a(ll)?|everything")) {
-                Radius.replaceNear(sender, new String[]{"/replacenear ", " 31,37,38,39,40,81,83,86,175 0"}, args);
-                Radius.replaceNear(sender, new String[]{"/replacenear ", " 17,18,161,162 0"}, args);
+                Radius.replaceNear(sender, " 31,37,38,39,40,81,83,86,175 0", args, 2);
+                Radius.replaceNear(sender, " 17,18,161,162 0", args, 2);
                 caves(sender, args);
-                Radius.replaceNear(sender, new String[]{"butcher ", " -a"}, args);
+
+                Player player = (Player) sender;
+                String radius = Radius.get(sender, args, 2);
+
+                if (!radius.isEmpty()) {
+                    player.performCommand("butcher" + radius + "-a");
+                }
             } else if (args[1].matches("n(ature)?|grass|flowers?")) {
-                Radius.replaceNear(sender, new String[]{"/replacenear ", " 31,37,38,39,40,81,83,86,175 0"}, args);
+                Radius.replaceNear(sender, " 31,37,38,39,40,81,83,86,175 0", args, 2);
             } else if (args[1].matches("t(rees?)?|lea(f|ves)")) {
-                Radius.replaceNear(sender, new String[]{"/replacenear ", " 17,18,161,162 0"}, args);
+                Radius.replaceNear(sender, " 17,18,161,162 0", args, 2);
             } else if (args[1].matches("c(aves?)?")) {
                 caves(sender, args);
             } else if (args[1].matches("m(obs?)?")) {
-                Radius.replaceNear(sender, new String[]{"butcher ", " -a"}, args);
+                Player player = (Player) sender;
+                String radius = Radius.get(sender, args, 2);
+
+                if (!radius.isEmpty()) {
+                    player.performCommand("butcher" + radius + "-a");
+                }
             } else {
                 sender.sendMessage(ChatColor.RED + "Usage: /" + label + " " + args[0] + " <all | nature | trees | caves | mobs> [radius]");
             }

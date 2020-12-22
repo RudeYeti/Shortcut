@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 
 public class Radius {
 
-    public static String get(CommandSender sender, String[] args) {
-        if (args.length == 3) {
-            if (NumberUtils.isNumber(args[2])) {
-                if (Integer.parseInt(args[2]) > 100) {
-                    sender.sendMessage(ChatColor.RED + "Usage: The specified radius must be 100 or less.");
+    public static String get(CommandSender sender, String[] args, int radiusIndex) {
+        if (args.length == radiusIndex + 1) {
+            if (NumberUtils.isNumber(args[radiusIndex])) {
+                if (Integer.parseInt(args[radiusIndex]) < 1 && Integer.parseInt(args[radiusIndex]) > 100) {
+                    sender.sendMessage(ChatColor.RED + "Usage: The specified radius must be from 100 to 1.");
                     return "";
                 }
-                return args[2];
+                return args[radiusIndex];
             } else {
                 sender.sendMessage(ChatColor.RED + "Usage: The specified radius must be a number.");
                 return "";
@@ -24,12 +24,12 @@ public class Radius {
         }
     }
 
-    public static void replaceNear(CommandSender sender, String[] command, String[] args) {
+    public static void replaceNear(CommandSender sender, String command, String[] args, int radiusIndex) {
         Player player = (Player) sender;
-        String radius = get(sender, args);
+        String radius = get(sender, args, radiusIndex);
 
         if (!radius.isEmpty()) {
-            player.performCommand(command[0] + radius + command[1]);
+            player.performCommand("/replacenear " + radius + command);
         }
     }
 }
